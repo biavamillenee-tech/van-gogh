@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#142735">
+	<meta name="description" content="Perfil de Millene, estudante do IFC Videira.">
+	<title>Millene | Caderno de descobertas</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: dark;
+			--night: #142735;
+			--deep-night: #0d1b25;
+			--paper: #f7edcf;
+			--muted: #c5c5ae;
+			--gold: #efbf54;
+			--blue: #6195a0;
+			--rust: #bd6848;
+			--serif: "Playfair Display", Georgia, serif;
+			--sans: "DM Sans", sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+
+		html { scroll-behavior: smooth; }
+
+		body {
+			margin: 0;
+			background: var(--deep-night);
+			color: var(--paper);
+			font-family: var(--sans);
+			font-size: 16px;
+			line-height: 1.6;
+		}
+
+		a { color: inherit; }
+
+		.page-shell {
+			max-width: 1440px;
+			margin-inline: auto;
+			overflow: hidden;
+			background: var(--night);
+		}
+
+		.topbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 24px;
+			padding: 22px clamp(24px, 7vw, 96px);
+			border-bottom: 1px solid rgb(247 237 207 / 14%);
+		}
+
+		.signature {
+			font-family: var(--serif);
+			font-size: 20px;
+			text-decoration: none;
+		}
+
+		.topbar nav { display: flex; gap: clamp(18px, 4vw, 48px); }
+
+		.topbar nav a {
+			color: var(--muted);
+			font-size: 13px;
+			text-decoration: none;
+			transition: color 180ms ease;
+		}
+
+		.topbar nav a:hover, .topbar nav a:focus-visible { color: var(--gold); }
+
+		.hero {
+			min-height: 620px;
+			display: grid;
+			grid-template-columns: 0.9fr 1.1fr;
+			align-items: center;
+			gap: clamp(36px, 7vw, 100px);
+			padding: 72px clamp(24px, 7vw, 96px) 88px;
+			background:
+				radial-gradient(ellipse at 14% 18%, rgb(60 114 128 / 24%), transparent 36%),
+				var(--night);
+		}
+
+		.hero-copy { position: relative; z-index: 1; animation: arrive 700ms ease both; }
+
+		.eyebrow {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin: 0 0 20px;
+			color: var(--gold);
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+		}
+
+		.eyebrow::before { width: 28px; height: 1px; background: currentColor; content: ""; }
+
+		h1, h2, p { margin-top: 0; }
+
+		h1 {
+			max-width: 520px;
+			margin-bottom: 20px;
+			font-family: var(--serif);
+			font-size: clamp(64px, 8.2vw, 112px);
+			font-weight: 500;
+			letter-spacing: 0;
+			line-height: 0.98;
+		}
+
+		h1 span { color: var(--gold); }
+
+		.hero-intro {
+			max-width: 390px;
+			margin-bottom: 30px;
+			color: #d9d9c8;
+			font-size: 17px;
+		}
+
+		.school-tag {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 14px;
+			border: 1px solid rgb(247 237 207 / 22%);
+			color: var(--paper);
+			font-size: 13px;
+		}
+
+		.school-tag::before {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: var(--rust);
+			content: "";
+		}
+
+		.artwork {
+			position: relative;
+			min-height: 430px;
+			margin: 0;
+			animation: arrive 850ms 120ms ease both;
+		}
+
+		.artwork::before {
+			position: absolute;
+			inset: -18px 18px 18px -18px;
+			border: 1px solid rgb(239 191 84 / 58%);
+			content: "";
+		}
+
+		.artwork img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 48% center;
+			filter: saturate(0.88);
+		}
+
+		.artwork figcaption {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 46px 22px 18px;
+			background: linear-gradient(transparent, rgb(10 24 33 / 86%));
+			color: #f8edce;
+			font-size: 12px;
+		}
+
+		.artwork figcaption strong {
+			display: block;
+			font-family: var(--serif);
+			font-size: 19px;
+			font-weight: 500;
+		}
+
+		.about {
+			display: grid;
+			grid-template-columns: 0.7fr 1.3fr;
+			gap: 48px;
+			padding: 76px clamp(24px, 11vw, 156px) 82px;
+			background: var(--paper);
+			color: var(--night);
+		}
+
+		.section-label {
+			margin: 6px 0 0;
+			color: #9d583c;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 1.8px;
+			text-transform: uppercase;
+		}
+
+		.about h2, .field-notes h2 {
+			margin-bottom: 18px;
+			font-family: var(--serif);
+			font-size: clamp(32px, 4vw, 48px);
+			font-weight: 500;
+			line-height: 1.12;
+		}
+
+		.about-copy { max-width: 590px; }
+		.about-copy p:last-child { margin-bottom: 0; }
+
+		.field-notes {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			gap: 48px;
+			padding: 66px clamp(24px, 11vw, 156px) 72px;
+			background:
+				radial-gradient(ellipse at 86% 100%, rgb(189 104 72 / 16%), transparent 34%),
+				#1c3945;
+		}
+
+		.field-notes h2 { max-width: 420px; margin: 0; }
+
+		.note {
+			display: flex;
+			gap: 18px;
+			align-items: flex-start;
+			padding: 16px 0;
+			border-bottom: 1px solid rgb(247 237 207 / 20%);
+		}
+
+		.note:last-child { border-bottom: 0; }
+
+		.note-mark {
+			flex: 0 0 34px;
+			color: var(--gold);
+			font-family: var(--serif);
+			font-size: 24px;
+			line-height: 1.2;
+		}
+
+		.note p { margin: 0; color: #e1e2d3; font-size: 14px; }
+
+		footer {
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+			padding: 22px clamp(24px, 7vw, 96px);
+			color: #bfc5b8;
+			font-size: 12px;
+		}
+
+		footer p { margin: 0; }
+
+		@keyframes arrive {
+			from { opacity: 0; transform: translateY(14px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after {
+				scroll-behavior: auto !important;
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 0.01ms !important;
+			}
+		}
+
+		@media (max-width: 760px) {
+			.topbar { padding-block: 17px; }
+			.topbar nav { gap: 16px; }
+			.topbar nav a { font-size: 12px; }
+
+			.hero {
+				min-height: auto;
+				grid-template-columns: 1fr;
+				gap: 48px;
+				padding-top: 64px;
+				padding-bottom: 58px;
+			}
+
+			.artwork { min-height: min(72vw, 390px); margin-left: 14px; }
+			.about { grid-template-columns: 1fr; gap: 22px; padding-block: 54px; }
+			.field-notes { grid-template-columns: 1fr; gap: 26px; padding-block: 52px; }
+		}
+
+		@media (max-width: 420px) {
+			.topbar { align-items: flex-start; flex-direction: column; gap: 10px; }
+			.hero { padding-top: 50px; }
+			footer { flex-direction: column; gap: 4px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="page-shell">
+		<header class="topbar">
+			<a class="signature" href="#inicio" aria-label="Millene, início">Millene<span aria-hidden="true">.</span></a>
+			<nav aria-label="Navegação principal">
+				<a href="#sobre">Sobre mim</a>
+				<a href="#caderno">Meu caderno</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero" id="inicio" aria-labelledby="hero-title">
+				<div class="hero-copy">
+					<p class="eyebrow">Um pouco sobre mim</p>
+					<h1 id="hero-title">Oi, eu sou<br><span>Millene.</span></h1>
+					<p class="hero-intro">Estudante do IFC Videira. Este é meu cantinho para compartilhar um pouco da minha trajetória e das ideias que quero explorar.</p>
+					<span class="school-tag">IFC · Campus Videira</span>
+				</div>
+
+				<figure class="artwork">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="A Noite Estrelada, pintura de Vincent van Gogh com redemoinhos azuis e estrelas douradas">
+					<figcaption><strong>Uma noite cheia de ideias</strong>Inspirado nas cores e nos movimentos de Van Gogh</figcaption>
+				</figure>
+			</section>
+
+			<section class="about" id="sobre" aria-labelledby="about-title">
+				<p class="section-label">01 / Apresentação</p>
+				<div class="about-copy">
+					<h2 id="about-title">Meu mundo, em construção.</h2>
+					<p>Sou a Millene, aluna do Instituto Federal Catarinense, no campus de Videira. Estou vivendo uma fase de descobertas, aprendizados e novos caminhos.</p>
+					<p>Assim como em uma pintura, cada experiência acrescenta uma cor diferente à minha história.</p>
+				</div>
+			</section>
+
+			<section class="field-notes" id="caderno" aria-labelledby="notes-title">
+				<div>
+					<p class="eyebrow">Páginas abertas</p>
+					<h2 id="notes-title">Meu caderno de descobertas</h2>
+				</div>
+				<div aria-label="Sobre este perfil">
+					<div class="note"><span class="note-mark" aria-hidden="true">01</span><p>Uma estudante, muitas possibilidades pela frente.</p></div>
+					<div class="note"><span class="note-mark" aria-hidden="true">02</span><p>Um espaço para registrar ideias, estudos e inspirações.</p></div>
+					<div class="note"><span class="note-mark" aria-hidden="true">03</span><p>Cada novo dia é uma página em branco.</p></div>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>Millene · IFC Videira</p>
+			<p>Feito com inspiração em Vincent van Gogh</p>
+		</footer>
+	</div>
+</body>
+</html>
